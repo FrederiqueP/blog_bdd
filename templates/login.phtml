@@ -1,0 +1,27 @@
+<main>
+        <form method="POST" action="login.php">
+            <fieldset>
+                <legend>Login</legend>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email">
+                    <?php if (isset($errors['email'])): ?>
+                        <p class="error"><?=$errors['email'];?></p>
+                    <?php endif; ?>
+                </div>
+                <div>
+                    <label for="password">Mot de passe</label>
+                    <input type="text" id="password" name="password">
+                    <?php if (isset($errors['password'])): ?>
+                        <p class="error"><?=$errors['password'];?></p>
+                    <?php endif; ?>
+                </div>
+                <div>
+                <input type="submit" value="Valider">
+            </fieldset>
+        </form>
+        <div>
+        <div>
+             <p class="error"><?=$error;?></p>
+        </div>
+</main>

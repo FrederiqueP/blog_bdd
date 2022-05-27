@@ -1,0 +1,55 @@
+
+<article>
+    <h2><?=htmlspecialchars($article['title']);?></h2>
+    <small>Créé le <?=(new DateTimeImmutable($article['createdAt']))->format('d/m/Y');?></small>
+    
+    <?php if ($article['image']): ?>
+        <img src="images/<?=htmlspecialchars($article['image']);?>" alt="">
+    <?php endif; ?>
+
+    <?php if ($article['abstract']): ?>
+        <p><?=htmlspecialchars($article['abstract']);?></p>
+    <?php endif; ?>
+
+    <p><?=htmlspecialchars($article['content']);?></p>
+</article>
+    
+<section>
+    <?php if (isConnected()): ?>
+        <h3>Commentaires</h3>
+        <form action="article.php?id=<?=$idArticle;?>" method="POST">
+            <fieldset>
+                <legend>Poster un commentaire</legend>
+                <div>
+                    <label for="content">Votre commentaire</label><br>
+                    <textarea name="content" id="content"></textarea>
+
+                    <!-- message d'erreur le cas échéant -->
+                    <?php if (isset($errors['content'])): ?>
+                        <p><?=htmlspecialchars($errors['content']);?></p>
+                    <?php endif; ?>
+                </div>
+            </fieldset>
+            <input type="submit" value="Enregistrer">
+        </form>
+    <?php else: ?>
+        <p>Pour poster un commentaire, <a href="login.php">connectez-vous</a> ou <a href="signup.php">créez un compte</a> !</p>
+    <?php endif; ?>
+
+    <h4>Les commentaires des internautes</h4>
+    <?php if (!$comments): ?>
+            <?php if (isConnected()): ?>
+                <p>Soyez le premier à poster un commentaire !</p>
+            <?php endif; ?>
+    <?php else: ?>
+        <?php foreach ($comments as $comment): ?>
+            <article>
+                <h4>
+                    Posté par <?=htmlspecialchars($comment['firstname']);?> <?=htmlspecialchars($comment['lastname']);?>
+                    le <?=(new DateTimeImmutable($comment['createdAt']))->format('d/m/Y à H\hi');?>
+                </h4>
+                <p><?=htmlspecialchars($comment['content']);?></p>
+            </article>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</section>

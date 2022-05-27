@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Blog</title>
+    
+    <?php if (isset($script)):?>
+        <?= $script;?>
+    <?php endif;?>
+    <?php if (isset($css)):?>
+        <?= $css;?>
+    <?php endif;?>
+    
+</head>
+<body>
+    <header>
+        <h1>Dashboard Administration Blog</h1>
+        <h4>Site Public ?????</h4>
+    </header>
+    <main>
+        <?php
+            include '../templates/'.$template.'.phtml';
+        ?>
+    </main>
+</body>
+</html>
