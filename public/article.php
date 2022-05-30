@@ -4,6 +4,7 @@
 include '../app/config.php';
 include '../lib/functions.php';
 include '../src/Core/Database.php';
+include '../src/Core/AbstractModel.php';
 include '../src/Model/ArticleModel.php';
 include '../src/Model/CommentModel.php';
 
@@ -78,6 +79,9 @@ if (!empty($_POST)) {
 $commentModel = new CommentModel();
 $comments = $commentModel->getCommentsByArticleId($idArticle);
 
+
+// Test du nombre d'instances de PDO
+// var_dump(Database::getCountPDO());
 
 // Affichage : inclusion du fichier de template
 include '../templates/base.phtml';

@@ -7,6 +7,7 @@ session_start();
 include '../app/config.php';
 include '../lib/functions.php';
 include '../src/Core/Database.php';
+include '../src/Core/AbstractModel.php';
 include '../src/Model/ArticleModel.php';
 
 // sur toute les pages administrateur (CRUD)

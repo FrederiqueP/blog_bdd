@@ -1,13 +1,14 @@
 <?php 
 
+include '../vendor/autoload.php';
+
 session_start();
-var_dump('-------  la session ----->>>>>>');
-var_dump($_SESSION);
 
 // Inclusion des dépendances 
 include '../app/config.php';
 include '../lib/functions.php';
 include '../src/Core/Database.php';
+include '../src/Core/AbstractModel.php';
 include '../src/Model/ArticleModel.php';
 
 
@@ -22,6 +23,8 @@ $template = 'home';
 $articleModel = new ArticleModel();
 $articles = $articleModel->getAllArticles();
 
+// Test du nombre d'instances de PDO
+// var_dump(Database::getCountPDO());
 
 // on teste tout de suite avec un var_dump 
 // avant de voir sur html
@@ -30,6 +33,6 @@ $articles = $articleModel->getAllArticles();
 // echo '<pre>';
 // var_dump($articles);
 // echo '</pre>';
-
+dump ($articles);
 // Affichage: inclusion du template
 include '../templates/base.phtml';
