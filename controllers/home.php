@@ -1,16 +1,5 @@
 <?php 
 
-include '../vendor/autoload.php';
-
-session_start();
-
-// Inclusion des dépendances 
-include '../app/config.php';
-include '../lib/functions.php';
-include '../src/Core/Database.php';
-include '../src/Core/AbstractModel.php';
-include '../src/Model/ArticleModel.php';
-
 
 // Initialisation pour les pages phtml
 $css = '<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">';
@@ -33,6 +22,6 @@ $articles = $articleModel->getAllArticles();
 // echo '<pre>';
 // var_dump($articles);
 // echo '</pre>';
-dump ($articles);
+// dump ($articles);
 // Affichage: inclusion du template
 include '../templates/base.phtml';

@@ -1,8 +1,11 @@
 
- 
+    <a href="<?=buildUrl('addArt');?>" title="Ajouter un nouvel article">Ajouter un article</a>
+
+
     <main>
+
         <section>
-           <form action="add_article.php" method="POST">
+           <form action="<?=buildUrl('addArt');?>" method="POST">
                 <input type="submit" value="+ Nouvel article" class="btn">
             </form>
             <caption>Liste des articles</caption>
@@ -17,7 +20,7 @@
             </thead>
                 <tbody>
                 <?php foreach ($articles as $article): ?>
-                    <tr id="article-<?=htmlspecialchars($article['id']);?>">
+                    <tr id="article-<?=htmlspecialchars($article['idArticle']);?>">
                         <td><?=htmlspecialchars($article['title']);?></td>
                         <td><?=(new DateTimeImmutable($article['createdAt']))->format('d/m/Y');?></td>
                         <td>
@@ -26,11 +29,14 @@
                             <?php endif; ?>
                         </td>
                         <td>
-                            <a href="edit_article.php?id=<?=$article['id'];?>"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
-                         
-                            <a class="delete-article-button"  data-ajax="delete_article_ajax.php?id=<?=htmlspecialchars($article['id']);?>"    href="delete_article.php?id=<?=htmlspecialchars($article['id']);?>"><i class="fa-solid fa-trash-can"></i> Supprimer</a>
+                            <a href="<?= buildUrl('editArt',['id' => $article['idArticle']])?>"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
                             
-                            
+                            <a class="delete-article-button" 
+                       href="<?=buildUrl('delArt', ['id' => intval($article['idArticle'])]);?>"
+                       data-ajax="<?=buildUrl('delArtAjax', ['id' => intval($article['idArticle'])]);?>"><i class="fa-solid fa-trash-can"></i> Supprimer</a>
+               
+
+
                          </td>
                     </tr>
                 <?php endforeach; ?>
@@ -39,3 +45,4 @@
         </section>
     
     </main>
+    

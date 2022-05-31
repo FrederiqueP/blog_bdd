@@ -72,3 +72,14 @@ CREATE TABLE Comment
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 SHOW TABLES;
+
+
+ALTER TABLE `comment`
+  DROP FOREIGN KEY `fk_article`; 
+  
+ALTER TABLE `comment`
+ADD CONSTRAINT `fk_article` 
+FOREIGN KEY (`fkArticleId`) 
+REFERENCES `article` (`idArticle`) 
+ON DELETE CASCADE 
+ON UPDATE CASCADE;

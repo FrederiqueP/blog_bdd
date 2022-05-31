@@ -1,15 +1,5 @@
 <?php 
 
-// On démarre la session pour être certain qu'elle est démarrée
-session_start();
-
-// Inclusion des dépendances 
-include '../app/config.php';
-include '../lib/functions.php';
-include '../src/Core/Database.php';
-include '../src/Core/AbstractModel.php';
-include '../src/Model/ArticleModel.php';
-
 // sur toute les pages administrateur (CRUD)
 if(!hasRole(ROLE_ADMIN)) 
 {

@@ -34,9 +34,9 @@ for (const button of deleteButtons) {
             console.log(link);
             const response =  await fetch(link.dataset.ajax);
             console.log(response);
-            const monId = await response.text();
+            const monId = await response.json();
             console.log(monId);
-            const toSuppr = document.querySelector('#article-' + monId);
+            const toSuppr = document.querySelector('#article-' + monId.id);
             toSuppr.remove();
             
         

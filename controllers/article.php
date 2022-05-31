@@ -1,13 +1,5 @@
 <?php
 
-// Inclusion des dépendances
-include '../app/config.php';
-include '../lib/functions.php';
-include '../src/Core/Database.php';
-include '../src/Core/AbstractModel.php';
-include '../src/Model/ArticleModel.php';
-include '../src/Model/CommentModel.php';
-
 // Initialisation pour les pages phtml
 $template = 'article';
 $titlePage = 'Accueil - Bienvenue';

@@ -13,17 +13,18 @@
     <header>
         <h1><?= $titlePage;?></h1>
         <nav>
+            <a href="<?=buildUrl('home');?>">Accueil</a>
             <?php
                 if (isConnected()) { 
                     ?>
-                        <a href="logout.php">
+                        <a href="<?=buildUrl('logout');?>">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion</a>
                          <p> Bonjour <?=htmlspecialchars($_SESSION['user']['firstname']);?>  <?=$_SESSION['user']['lastname'];?> </p>
                     <?php    
                 } else {
                     ?>
-                    <a href="login.php">Connexion</a>
-                    <a href="signup.php">Créer un compte</a>
+                    <a href="<?=buildUrl('login');?>">Connexion</a>
+                    <a href="<?=buildUrl('signup');?>">Créer un compte</a>
                     <?php 
                 }
             ?>

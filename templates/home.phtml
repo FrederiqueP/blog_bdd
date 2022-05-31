@@ -13,7 +13,8 @@
                         <img src="images/<?=$article['image'];?>" alt="">
                     <?php endif; ?>
 
-                     <a href="article.php?id=<?=$article['idArticle'];?>">Lire la suite</a>
+                        <a href="<?= buildUrl('article',['id' => $article['idArticle']])?>">Lire la suite</a>
+
                 </article>
             <?php // } ?>
             <?php endforeach; ?>

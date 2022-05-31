@@ -36,13 +36,14 @@ class ArticleModel extends AbstractModel {
      * @param string $title Le nom du fichier image de l'article
      * @return void
      */
-    function addArticle(string $title, string $abstract, string $content, string $image)
+    function addArticle(string $title, string $abstract, string $content, string $image, int $idUser, int $idCateg)
     {
-        $sql = 'INSERT INTO article (title, content, abstract, image, createdAt)
-                VALUES (?,?,?,?,NOW())';
+        $sql = 'INSERT INTO article (title, content, abstract, image, createdAt, fkUserId, fkCategoryId)
+                VALUES (?,?,?,?,NOW(),?,?)';
 
-        $this->db->executeQuery($sql, [$title, $content, $abstract, $image]);
+        $this->db->executeQuery($sql, [$title, $content, $abstract, $image, $idUser, $idCateg]);
     }
+
 
     /**
      * Modifie un article
@@ -71,6 +72,7 @@ class ArticleModel extends AbstractModel {
                 WHERE idArticle = ?';
 
         $this->db->executeQuery($sql, [$idArticle]);
+
     }
 
 }

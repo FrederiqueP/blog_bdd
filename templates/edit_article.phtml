@@ -1,5 +1,5 @@
     <main>
-    <form method="POST" action="edit_article.php?id=<?=$idArticle;?>">
+    <form method="POST" action="<?=buildUrl('editArt', ['id' => $idArticle]);?>">
             <fieldset>
                 <legend>Modifier un article</legend>
                 <div>

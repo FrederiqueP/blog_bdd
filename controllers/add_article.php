@@ -1,10 +1,5 @@
 <?php 
 
-// Inclusion des dépendances 
-include '../app/config.php';
-include '../lib/functions.php';
-include '../src/Core/Database.php';
-include '../src/Model/ArticleModel.php';
 
 // Initialisation pour les pages phtml
 $template = 'add_article';
@@ -43,7 +38,9 @@ if (!empty($_POST)) {
         $articleModel->addArticle($title, $abstract, $content, $image, $fkUserId, $fkCategoryId);
 
         // On redirige l'internaute (pour l'instant vers une page de confirmation)
-        header('Location: admin.php');
+       //  header('Location: admin.php');
+
+        header('Location: ' . buildUrl('admin'));
         exit;
     }
 }

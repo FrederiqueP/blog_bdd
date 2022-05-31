@@ -1,11 +1,11 @@
 <?php
 
-// Inclusion des dépendances
-include '../lib/functions.php';
-
-// Initialisation pour les pages phtml
-$template = 'edit_article';
-$titlePage = 'Accueil - Bienvenue';
+// Vérification du rôle
+if (!hasRole(ROLE_ADMIN)) {
+    http_response_code(403);
+    echo 'Accès interdit';
+    exit;
+}
 
 // Traitements
 
@@ -24,7 +24,8 @@ if (!array_key_exists('id', $_GET) || !$_GET['id']) {
 $idArticle = $_GET['id'];
 
 // On va chercher l'article correspondant
-$article = getOneArticle($idArticle);
+$articleModel = new ArticleModel();
+$article = $articleModel->getOneArticle($idArticle);
 
 // On vérifie qu'on a bien récupéré un article, sinon => 404
 if (!$article) {
@@ -45,10 +46,10 @@ $image = $article['image'];
 if (!empty($_POST)) {
 
     // On récupère les données du formulaire
-    $title = trim($_POST['title']);
-    $abstract = trim($_POST['abstract']);
-    $content = trim($_POST['content']);
-    $image = trim($_POST['image']);
+    $title = strip_tags(trim($_POST['title']));
+    $abstract = strip_tags(trim($_POST['abstract']));
+    $content = strip_tags(trim($_POST['content']));
+    $image = strip_tags(trim($_POST['image']));
 
     // On valide les données (titre et contenu obligatoires)
     if (!$title) {
@@ -63,13 +64,14 @@ if (!empty($_POST)) {
     if (empty($errors)) {
 
         // On modifie l'article
-        editArticle($title, $abstract, $content, $image, $idArticle);
+        $articleModel->editArticle($title, $abstract, $content, $image, $idArticle);
 
         // On redirige l'internaute (pour l'instant vers une page de confirmation)
-        header('Location: admin.php');
+        header('Location: ' . buildUrl('admin'));
         exit;
     }
 }
 
 // Affichage : inclusion du fichier de template
+$template = 'edit_article';
 include '../templates/base_admin.phtml';

@@ -1,12 +1,24 @@
 <?php 
 
 // Constantes
-const FILENAME = '../data/articles.json';
-const FILENAME2 = '../data/users.json';
 const ROLE_USER = 'USER';
 const ROLE_ADMIN = 'ADMIN';
 
 //////////////// FONCTIONS ////////////////
+
+function buildUrl (string $page,array $params=[]) :string{
+    $url = 'index.php?page='.urlencode($page);
+    foreach($params as $paramName => $paramValue) {
+        $url.='&'.urlencode($paramName).'='.urlencode($paramValue);
+    }   
+    
+    // ou bien
+    // if ($params) {
+    //      $url .= '&'.http_build_query($params);
+    // }
+    return $url;
+}
+
 
 
 /**
@@ -429,6 +441,9 @@ function hasRole(string $role)
 //         return false;
 //     }
 
+//  ---- utilisation de == qui est un operateur de comparaison 
+//  ---- sur l'expression qui produit une valeur booleene
+//  ---- retourne faux ou vrai sur cette comparaison
 //     return $_SESSION['user']['role'] == $role;
 // }
 
